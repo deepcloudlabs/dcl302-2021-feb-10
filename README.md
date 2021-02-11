@@ -8,4 +8,5 @@ Eğitim öncesinde bilgisayarınıza kurmanız gereken bir çalışma ortamı bu
 ZIP formatındaki bu dosyayı indirdikten sonra c:\DEVEL dizinine açmanız kurulum için yeterli olacaktır. 
 
 Bu işlemden sonra c:\DEVEL dizininin görünümü aşağıdaki gibi olmalıdır:
+
 ![c:\DEVEL dizininin görünümü](DEVEL-stage.png)
