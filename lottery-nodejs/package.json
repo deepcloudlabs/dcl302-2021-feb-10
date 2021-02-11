@@ -4,10 +4,10 @@
   "description": "Lottery Rest API",
   "main": "service.js",
   "scripts": {
-    "lottery-service": "node service.js"
+    "lottery-service": "nodemon service.js"
   },
   "dependencies": {
-
+    "nodemon": "2.0.7"
   },
   "keywords": [],
   "author": "Binnur Kurt <binnur.kurt@gmail.com>",
