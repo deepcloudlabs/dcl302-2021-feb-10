@@ -1,0 +1,16 @@
+{
+  "name": "study-node-async-websocket",
+  "version": "1.0.0",
+  "description": "Study Async in Node, HTTP vs WS",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "ws": "7.4.3",
+    "node-fetch": "2.6.1",
+    "nodemon": "2.0.7"
+  },
+  "author": "Binnur Kurt <binnur.kurt@gmail.com>",
+  "license": "MIT"
+}
