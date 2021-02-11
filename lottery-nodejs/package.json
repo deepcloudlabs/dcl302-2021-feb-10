@@ -1,0 +1,15 @@
+{
+  "name": "lottery-nodejs",
+  "version": "1.0.0",
+  "description": "Lottery Rest API",
+  "main": "service.js",
+  "scripts": {
+    "lottery-service": "node service.js"
+  },
+  "dependencies": {
+
+  },
+  "keywords": [],
+  "author": "Binnur Kurt <binnur.kurt@gmail.com>",
+  "license": "MIT"
+}
