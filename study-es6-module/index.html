@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Lottery Page</title>
+    <script src="js/knockout-3.5.1.debug.js"></script>
+    <script type="module" src="js/lottery.js"></script>
+    <script type="module" src="js/model.js"></script>
+    <script type="module" src="js/app.js"></script>
 </head>
 <body>
-
+    <button data-bind="click: drawNumbers">Draw</button>
+    <ul data-bind="foreach: {data: numbers, as: 'number'}">
+        <li data-bind="text: number"></li>
+    </ul>
 </body>
 </html>
