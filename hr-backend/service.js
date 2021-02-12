@@ -28,7 +28,7 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        validation: /^[1-9][0-9]{10}$/,
+        // validation: /^[1-9][0-9]{10}$/,
         validate: [
             tcKimlikNoValidator,
             "You must provide a valid identity no."
@@ -52,7 +52,7 @@ const employeeSchema = new mongoose.Schema({
         required: true
     },
     "photo": {
-        type: String,
+        type: String, // base-64 encoded
         required: false
     },
     "fulltime": {
@@ -99,6 +99,25 @@ api.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDoc))
 //endregion
 
 //region rest over http
+//   i. Resource: Employee -> URL http(s)://server.example.com:8080 /hr/api/v1 /employees
+//  ii. Methods: GET, POST, PUT, PATCH, DELETE
+// iii. Representation? XML, JSON, CSV, ... -> JSON
+
+// Hiring an employee
+// POST http://localhost:7001/hr/api/v1/employees
+api.post("/hr/api/v1/employees", (req,res) => {
+    let emp = req.body;
+    emp._id = emp.identityNo;
+    let employee = new Employee(emp);
+    employee.save((err, new_employee) => {
+        res.set("Content-Type", "application/json");
+        if (err){
+            res.status(400).send({status: err});
+        } else {
+            res.status(200).send(new_employee);
+        }
+    });
+});
 
 //endregion
 
