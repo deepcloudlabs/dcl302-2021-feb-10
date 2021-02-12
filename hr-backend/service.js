@@ -53,7 +53,8 @@ const employeeSchema = new mongoose.Schema({
     },
     "photo": {
         type: String, // base-64 encoded
-        required: false
+        required: false,
+        default: AppConfig.NO_IMAGE
     },
     "fulltime": {
         type: Boolean,
@@ -84,7 +85,7 @@ const swaggerUi = require("swagger-ui-express");
 const openApiDoc = require("./swagger-hr");
 
 
-const port = 7100;
+const port = 7001;
 const api = express();
 api.use(bodyParser.json({limit : "3mb"}));
 api.use(logger('dev'));
@@ -95,6 +96,7 @@ api.use(function(req,res,next){
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
    next();
 })
+// http://localhost:7001/api-docs
 api.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDoc))
 //endregion
 
@@ -174,7 +176,23 @@ api.get("/hr/api/v1/employees/:identity",(req,res)=> {
     let identity = req.params.identity;
     Employee.findOne(
         {"identityNo": identity},
-        {_id: false},
+        {_id: false, "photo": false},
+        (err,emp) => {
+            res.set("Content-Type", "application/json");
+            if (err){
+                res.status(404).send({status: err});
+            } else {
+                res.status(200).send(emp);
+            }
+        }
+    )
+});
+// GET http://localhost:7001/hr/api/v1/employees/51608105512/photo
+api.get("/hr/api/v1/employees/:identity/photo",(req,res)=> {
+    let identity = req.params.identity;
+    Employee.findOne(
+        {"identityNo": identity},
+        {_id: false, "photo": true},
         (err,emp) => {
             res.set("Content-Type", "application/json");
             if (err){
@@ -194,7 +212,7 @@ api.get("/hr/api/v1/employees",(req,res)=> {
     let offset = page * size ;
     Employee.find(
         {},
-        {_id: false},
+        {_id: false, "photo": false},
         {skip: offset, limit: size},
         (err,employees) => {
             res.set("Content-Type", "application/json");
