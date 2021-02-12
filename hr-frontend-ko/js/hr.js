@@ -98,7 +98,7 @@ class HrViewModel {
             `${AppConfig.REST_API_BASE_URL}/employees/${this.employee.identityNo()}`,
             {
                 method: "DELETE",
-                headers: new Headers({"Accept": "application/json"})
+                headers: new Headers({"Accept": "application/json", "Origin": "localhost:7001"})
             }
         ).then(emp => emp.json())
             .then(emp => {
