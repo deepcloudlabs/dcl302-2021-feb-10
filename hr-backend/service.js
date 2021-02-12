@@ -118,6 +118,34 @@ api.post("/hr/api/v1/employees", (req,res) => {
         }
     });
 });
+const updatableEmployeeFields = [
+  "salary", "photo", "department", "fulltime", "iban"
+];
+
+// PUT http://localhost:7001/hr/api/v1/employees/11111111110
+api.put("/hr/api/v1/employees/:identity", (req,res) => {
+    let identity = req.params.identity;
+    let emp = req.body;
+    emp._id = identity;
+    let updatedEmployee= {};
+    for (let field in emp){ // reflection
+        if (updatableEmployeeFields.includes(field))
+            updatedEmployee[field] = emp[field];
+    }
+    Employee.update(
+        {"identityNo": identity},
+        {$set: updatedEmployee},
+        {upsert: false},
+        (err, new_emp) => {
+                    res.set("Content-Type", "application/json");
+                    if (err){
+                        res.status(400).send({status: err});
+                    } else {
+                        res.status(200).send({"status": "ok"});
+                    }
+        }
+    );
+});
 
 //endregion
 
