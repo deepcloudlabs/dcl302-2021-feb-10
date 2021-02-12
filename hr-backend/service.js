@@ -122,10 +122,10 @@ const updatableEmployeeFields = [
   "salary", "photo", "department", "fulltime", "iban"
 ];
 
-// PUT http://localhost:7001/hr/api/v1/employees/11111111110
-api.put("/hr/api/v1/employees/:identity", (req,res) => {
+
+const updateOrPatch = (req, res) => {
     let identity = req.params.identity;
-    let emp = req.body;
+    let emp = req.body; // full resource
     emp._id = identity;
     let updatedEmployee= {};
     for (let field in emp){ // reflection
@@ -137,20 +137,80 @@ api.put("/hr/api/v1/employees/:identity", (req,res) => {
         {$set: updatedEmployee},
         {upsert: false},
         (err, new_emp) => {
-                    res.set("Content-Type", "application/json");
-                    if (err){
-                        res.status(400).send({status: err});
-                    } else {
-                        res.status(200).send({"status": "ok"});
-                    }
+            res.set("Content-Type", "application/json");
+            if (err){
+                res.status(400).send({status: err});
+            } else {
+                res.status(200).send({"status": "ok"});
+            }
         }
     );
+};
+
+// PUT http://localhost:7001/hr/api/v1/employees/11111111110
+api.put("/hr/api/v1/employees/:identity", updateOrPatch);
+
+// PATCH http://localhost:7001/hr/api/v1/employees/11111111110
+api.patch("/hr/api/v1/employees/:identity", updateOrPatch);
+
+// DELETE http://localhost:7001/hr/api/v1/employees/11111111110
+api.delete("/hr/api/v1/employees/:identity",(req,res)=>{
+   let identity = req.params.identity;
+   Employee.findOneAndDelete(
+       {"identityNo": identity},
+       {_id: false},
+       (err,emp) => {
+           res.set("Content-Type", "application/json");
+           if (err){
+               res.status(404).send({status: err});
+           } else {
+               res.status(200).send(emp);
+           }
+       }
+       );
+});
+// GET http://localhost:7001/hr/api/v1/employees/11111111110
+api.get("/hr/api/v1/employees/:identity",(req,res)=> {
+    let identity = req.params.identity;
+    Employee.findOne(
+        {"identityNo": identity},
+        {_id: false},
+        (err,emp) => {
+            res.set("Content-Type", "application/json");
+            if (err){
+                res.status(404).send({status: err});
+            } else {
+                res.status(200).send(emp);
+            }
+        }
+    )
 });
 
+// GET http://localhost:7001/hr/api/v1/employees?page=10&size=15
+// GET http://localhost:7001/hr/api/v1/employees
+api.get("/hr/api/v1/employees",(req,res)=> {
+    let page = Number(req.query.page || 0);
+    let size = Number(req.query.size || 10);
+    let offset = page * size ;
+    Employee.find(
+        {},
+        {_id: false},
+        {skip: offset, limit: size},
+        (err,employees) => {
+            res.set("Content-Type", "application/json");
+            if (err){
+                res.status(404).send({status: err});
+            } else {
+                res.status(200).send(employees);
+            }
+        }
+    )
+});
 //endregion
 
 //region rest over ws
 
 //endregion
 
-console.log("Server is up and running...")
+let server = api.listen(port);
+console.log(`Server is up and running at ${port}.`);
