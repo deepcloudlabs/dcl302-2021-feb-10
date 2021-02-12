@@ -2,50 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="454072f1-5510-4c7d-878c-7d3300fc7bbe" name="Default Changelist" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/../hr-backend/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hr-backend/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hr-backend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/hr-frontend-ko.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap-theme.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/drag-and-drop.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/toastr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/es7-object.methods.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/hr-config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/hr-util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/i18next-1.7.7.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/jquery-1.11.3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/knockout-3.4.2.debug.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/knockout-localization.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/knockout.validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/ko-file.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/socket.io.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/lib/toastr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/translation-en.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/translation-tr.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/study-new-object-methods.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lottery-nodejs/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lottery-nodejs/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../study-es6-module/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../study-js/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../study-node-async-websocket/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../study-node-async-websocket/.idea/study-node-async-websocket.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../study-node-async-websocket/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hr-backend/websocket-io-client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hr-backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../hr-backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hr-backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../hr-backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hr-backend/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../hr-backend/service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/hr.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,12 +18,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1oNTtvQ4M64gR9hFtwGzIMfZLy9" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -78,8 +43,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1613126267767</updated>
-      <workItem from="1613126269004" duration="792000" />
+      <workItem from="1613126269004" duration="5055000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1613128744919</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613128744919</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +70,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial commit" />
     <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>

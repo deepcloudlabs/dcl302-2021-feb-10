@@ -96,6 +96,7 @@ api.use(function(req,res,next){
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
    next();
 })
+
 // http://localhost:7001/api-docs
 api.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiDoc))
 //endregion
@@ -116,6 +117,7 @@ api.post("/hr/api/v1/employees", (req,res) => {
         if (err){
             res.status(400).send({status: err});
         } else {
+            sockets.forEach( socket => socket.emit('hire', new_employee))
             res.status(200).send(new_employee);
         }
     });
@@ -166,6 +168,7 @@ api.delete("/hr/api/v1/employees/:identity",(req,res)=>{
            if (err){
                res.status(404).send({status: err});
            } else {
+               sockets.forEach( socket => socket.emit('fire', emp))
                res.status(200).send(emp);
            }
        }
@@ -192,7 +195,7 @@ api.get("/hr/api/v1/employees/:identity/photo",(req,res)=> {
     let identity = req.params.identity;
     Employee.findOne(
         {"identityNo": identity},
-        {_id: false, "photo": true},
+        {_id: false},
         (err,emp) => {
             res.set("Content-Type", "application/json");
             if (err){
@@ -212,7 +215,7 @@ api.get("/hr/api/v1/employees",(req,res)=> {
     let offset = page * size ;
     Employee.find(
         {},
-        {_id: false, "photo": false},
+        {_id: false},
         {skip: offset, limit: size},
         (err,employees) => {
             res.set("Content-Type", "application/json");
@@ -226,9 +229,20 @@ api.get("/hr/api/v1/employees",(req,res)=> {
 });
 //endregion
 
-//region rest over ws
-
-//endregion
 
 let server = api.listen(port);
+//region rest over ws
+const sockets = [];
+let io = require("socket.io").listen(server);
+io.set("origins","*:*");
+io.on("connect", socket => {
+    sockets.push(socket);
+    socket.on("disconnect", () => {
+        let index = sockets.indexOf(socket);
+        if (index >= 0){
+            sockets.splice(index,1);
+        }
+    });
+});
+//endregion
 console.log(`Server is up and running at ${port}.`);
